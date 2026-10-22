@@ -20,10 +20,11 @@ jobs:
             - name: Baixar o código
               uses: actions/checkout@v6
 
-            - name: Configurar GO
-              uses: actions/checkout@v6
+            - name: Configurar Go
+              uses: actions/setup-go@v6
               with:
-                go-version-file: 'go.mod'
+                go-version-file: go.mod
+                cache: true
 
             - name: Veirificar formatação
               run: |

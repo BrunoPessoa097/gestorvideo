@@ -1,0 +1,42 @@
+name: Video GO
+
+on: 
+    push:
+        branches: 
+            - main
+    pull_request:
+        branches: 
+            - main
+
+permissions:
+    contents: read
+
+jobs: 
+    quality:
+        name: Testes e compilação
+        runs-on: ubuntu-latest
+    
+        steps:
+            - name: Baixar o código
+              uses: actions/checkout@v6
+
+            - name: Configurar GO
+              uses: actions/checkout@v6
+              with:
+                go-version-file: 'go.mod'
+
+            - name: Veirificar formatação
+              run: |
+                test -z "$(gofmt -l .)"
+            
+            - name: Verificar dependências
+              run: go mod tidy -diff
+            
+            - name: Análise estática
+              run: go vet ./... 
+            
+            - name: Executar testes
+              run: go test -race ./... 
+            
+            - name: Compilar
+              run: go build ./...

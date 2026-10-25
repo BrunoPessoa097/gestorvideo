@@ -8,3 +8,6 @@ tidy:
 
 build-fyne:
 	CGO_ENABLED=1 go build -o gestorvideo ./cmd/main.go
+
+test-pessoa:
+	go test -v ./internal/tests/pessoas

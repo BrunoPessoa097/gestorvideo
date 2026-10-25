@@ -1,6 +1,9 @@
 package pessoas
 
-import "uuid"
+import (
+	"errors"
+	"uuid"
+)
 
 type Pessoas struct {
 	ID    string
@@ -8,10 +11,14 @@ type Pessoas struct {
 	Senha string
 }
 
-func NewPessoa(nome, senha string) *Pessoas {
+func NewPessoa(nome, senha string) (*Pessoas, error) {
+	if nome == "" || senha == "" {
+		return nil, errors.New("Existem campos vazios")
+	}
+
 	return &Pessoas{
 		ID:    uuid.New().String(),
 		Nome:  nome,
 		Senha: senha,
-	}
+	}, nil
 }

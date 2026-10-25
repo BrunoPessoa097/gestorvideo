@@ -20,6 +20,11 @@ jobs:
             - name: Baixar o código
               uses: actions/checkout@v6
 
+            - name: Instalar dependências gráficas (Fyne / CGO)
+              run: |
+                sudo apt-get update
+                sudo apt-get install -y libgl1-mesa-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev libasound2-dev pkg-config
+
             - name: Configurar Go
               uses: actions/setup-go@v6
               with:

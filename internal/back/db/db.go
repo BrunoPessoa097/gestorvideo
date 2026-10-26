@@ -39,15 +39,15 @@ func ConectarBanco() *Repository {
 }
 
 func envLoad() (string, error) {
-	err := godotenv.Load()
-	if err != nil {
-		return "", errors.New("Arquivo .env não encontrado")
+
+	if err := godotenv.Load("../../../.env"); err != nil {
+		return "", fmt.Errorf("erro ao carregar .env: %w", err)
 	}
 
 	env := os.Getenv("DATABASE_URL")
 
-	if env != "" {
-		return "", errors.New("A variável DATABASE_URL não foi definida no .env")
+	if env == "" {
+		return "", errors.New("DATABASE_URL não foi definida")
 	}
 
 	return env, nil

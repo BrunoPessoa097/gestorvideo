@@ -7,9 +7,9 @@ import (
 )
 
 func TestCriarUsuario(t *testing.T) {
-	pessoa, _ := pessoas.NewPessoa("", "")
+	_, err := pessoas.NewPessoa("Bruno", "senha")
 
-	if pessoa != nil {
+	if err != nil {
 		t.Fatal("Pessoa não criada")
 	}
 }
@@ -24,5 +24,13 @@ func TestCriarUsuarioVazio(t *testing.T) {
 
 	if err.Error() != mensagem {
 		t.Errorf("mensagem de erro incorreta.\nEsperado: %s\nRecebido: %s", mensagem, err.Error())
+	}
+}
+
+func TestSenhaHash(t *testing.T) {
+	pessoa, _ := pessoas.NewPessoa("Bruno", "senha")
+
+	if pessoa.Senha == "senha" {
+		t.Fatal("Problemas do hash")
 	}
 }

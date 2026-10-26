@@ -15,3 +15,14 @@ func NewPessoaRepository(db *gorm.DB) *PessoaRepository {
 func (pr *PessoaRepository) Create(p *Pessoas) error {
 	return pr.DB.Create(p).Error
 }
+
+func (pr *PessoaRepository) List(limit, offset int) ([]Pessoas, error) {
+	var pessoas []Pessoas
+	err := pr.DB.Limit(limit).Offset(offset).Find(&pessoas).Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	return pessoas, nil
+}

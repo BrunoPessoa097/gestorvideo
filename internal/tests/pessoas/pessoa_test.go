@@ -7,7 +7,7 @@ import (
 )
 
 func TestCriarUsuario(t *testing.T) {
-	_, err := pessoas.NewPessoa("Bruno", "senha")
+	_, err := pessoas.NewPessoa("Bruno", "senha", "88888888")
 
 	if err != nil {
 		t.Fatal("Pessoa não criada")
@@ -15,7 +15,7 @@ func TestCriarUsuario(t *testing.T) {
 }
 
 func TestCriarUsuarioVazio(t *testing.T) {
-	_, err := pessoas.NewPessoa("", "")
+	_, err := pessoas.NewPessoa("", "", "")
 	mensagem := "Existem campos vazios"
 
 	if err == nil {
@@ -28,7 +28,7 @@ func TestCriarUsuarioVazio(t *testing.T) {
 }
 
 func TestSenhaHash(t *testing.T) {
-	pessoa, _ := pessoas.NewPessoa("Bruno", "senha")
+	pessoa, _ := pessoas.NewPessoa("Bruno", "senha", "8888888")
 
 	if pessoa.Senha == "senha" {
 		t.Fatal("Problemas do hash")

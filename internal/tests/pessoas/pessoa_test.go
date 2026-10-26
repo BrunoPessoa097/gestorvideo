@@ -1,6 +1,7 @@
 package pessoas_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/BrunoPessoa097/gestorvideo/internal/back/db"
@@ -45,4 +46,16 @@ func TestSalvar(t *testing.T) {
 	if saida != nil {
 		t.Fatal("Problemas para salvar")
 	}
+}
+
+func TestListar(t *testing.T) {
+	db := db.ConectarBanco()
+	repo := pessoas.NewPessoaRepository(db.DB)
+	saida, err := repo.List(10, 0)
+
+	if err != nil {
+		t.Fatal("Problemas para Listar")
+	}
+
+	fmt.Println(saida)
 }

@@ -2,7 +2,10 @@ module github.com/BrunoPessoa097/gestorvideo
 
 go 1.27.0
 
-require fyne.io/fyne/v2 v2.8.2
+require (
+	fyne.io/fyne/v2 v2.8.2
+	golang.org/x/crypto v0.33.0
+)
 
 require (
 	fyne.io/systray v1.12.3-0.20260810170012-af4e8e793ec4 // indirect

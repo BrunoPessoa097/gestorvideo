@@ -8,20 +8,22 @@ import (
 )
 
 type Pessoas struct {
-	ID    string
-	Nome  string
-	Senha string
+	ID       string `gorm:"primaryKey"`
+	Nome     string `gorm:"not null"`
+	Senha    string `gorm:"not null"`
+	Telefone string `gorm:"null"`
 }
 
-func NewPessoa(nome, senha string) (*Pessoas, error) {
+func NewPessoa(nome, senha, telefone string) (*Pessoas, error) {
 	if nome == "" || senha == "" {
 		return nil, errors.New("Existem campos vazios")
 	}
 
 	p := &Pessoas{
-		ID:    uuid.New().String(),
-		Nome:  nome,
-		Senha: senha,
+		ID:       uuid.New().String(),
+		Nome:     nome,
+		Senha:    senha,
+		Telefone: telefone,
 	}
 
 	if err := p.toHash(); err != nil {

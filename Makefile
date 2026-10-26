@@ -11,3 +11,6 @@ build-fyne:
 
 test-pessoa:
 	go test -v ./internal/tests/pessoas
+
+banco:
+	docker compose up -d

@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
+import "fyne.io/fyne/v2/app"
 
 func main() {
-	fmt.Println("Iniciando Projeto")
+	a := app.New()
+	w := a.NewWindow("Gestor de Vídeo")
 }
